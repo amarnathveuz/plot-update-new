@@ -1,0 +1,214 @@
+{% extends "super_admin/base10.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css">
+<div class="row">
+
+
+</div>
+<form action="" method="POST"  enctype="multipart/form-data" name="frmUser">
+    {% csrf_token %}
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <!-- <h4 class="mb-sm-0">Payroll</h4> -->
+
+                    <div class="page-title-left">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">plot view</a>
+                            </li>
+                           
+
+                        </ol>
+                        <div class="margn">
+                            <a><button type="submit" style="padding: 5px 10px !important;"
+                                    class="btn btn-prim pay">
+                                    Save
+                                </button></a>
+                            <a href="plot_view_master"><button style="padding: 5px 10px !important;" type="button"
+                                    class="btn btn-pri pay discard-payroll"> Discard
+                                </button></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row pay-main">
+<input type="hidden" value="{{data.id}}" name="plot_view_id">
+
+            <div class="col-lg-12 px-0">
+                <div class="card noti-card" id="orderList">
+
+
+                    <div class="card-body bb-0 pt-0 p-0">
+                        <div>
+
+                            <div class="payslip mb-5">
+
+                                <div class="row pay-main mb-4">
+
+                                   
+                                    <div class="col-md-6 cust-details p-0">
+                                        <div class="row">
+                                            <div class="col-md-3 br-right d-flex align-items-center">
+                                                <h6>Plot view1 {{plot_view1.id}}</h6>
+                                            </div>
+                                            <div class="col-md-8 d-flex align-items-center">
+                                                <div class="form-group  required_item w-100">
+                                                    <input class="plot_view_select1 upload_restrict" {% if plot_view1 == None  %}  {% elif plot_view1 == "" %}  {% else %} style="display: none" {% endif %} accept="image/*" type="file" name="plot_view1" id="plotview1" onchange="return upload_restrict()">
+                                                    <input value="0" type="hidden" name="plot_view1_remove" id="plot_view1_remove">
+                                                    <input type="hidden" name="plot_view1_id" value="{{plot_view1.id}}">
+                                                    
+                                                    <a target="_blank" href="../media/{{plot_view1.attached_file}}"><img {% if plot_view1 == None  %} style="display: none" {% elif plot_view1 == "" %} style="display: none"  {% else %}  {% endif %}  class="plot_view_image1" style="    width: 18%;
+                                                    padding: 5px 9px;" src="../media/{{plot_view1.attached_file}}"></a>
+                                                    <li {% if plot_view1 == None  %} style="display: none" {% elif plot_view1 == "" %} style="display: none"  {% else %}  {% endif %} id="plot_view_image11" onclick="plot_view1_onclick()" style="cursor: pointer"  class="fa fa-remove"></li>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 br-right d-flex align-items-center">
+                                                <h6>Plot view2</h6>
+                                            </div>
+                                            <div class="col-md-8 d-flex align-items-center">
+                                                <div class="form-group  required_item w-100">
+                                                    <input class="plot_view_select2" {% if plot_view2 == None  %}  {% elif plot_view2 == "" %}  {% else %} style="display: none" {% endif %} accept="image/*" type="file" name="plot_view2" id="plotview2" onchange="return upload_restrict2()">
+                                                    <input value="0" type="hidden" name="plot_view2_remove" id="plot_view2_remove">
+                                                    <input type="hidden" name="plot_view2_id" value="{{plot_view2.id}}">
+                                                    
+                                                    <a target="_blank" href="../media/{{plot_view2.attached_file}}"><img {% if plot_view2 == None  %} style="display: none" {% elif plot_view2 == "" %} style="display: none"  {% else %}  {% endif %}  class="plot_view_image2" style="    width: 18%;
+                                                    padding: 5px 9px;" src="../media/{{plot_view2.attached_file}}"></a>
+                                                    <li {% if plot_view2 == None  %} style="display: none" {% elif plot_view2 == "" %} style="display: none"  {% else %}  {% endif %} id="plot_view_image22" onclick="plot_view2_onclick()" style="cursor: pointer"  class="fa fa-remove"></li>
+                          
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 br-right d-flex align-items-center">
+                                                <h6>Plot view3</h6>
+                                            </div>
+                                            <div class="col-md-8 d-flex align-items-center">
+                                                <div class="form-group  required_item w-100">
+                                                    <input class="plot_view_select3" {% if plot_view3 == None  %}  {% elif plot_view3 == "" %}  {% else %} style="display: none" {% endif %} accept="image/*" type="file" name="plot_view3" id="plotview3" onchange="return upload_restrict3()">
+                                                                <input value="0" type="hidden" name="plot_view3_remove" id="plot_view3_remove">
+                                                                <input type="hidden" name="plot_view3_id" value="{{plot_view3.id}}">
+                                                                
+                                                                <a target="_blank" href="../media/{{plot_view3.attached_file}}"><img {% if plot_view3 == None  %} style="display: none" {% elif plot_view3 == "" %} style="display: none"  {% else %}  {% endif %}  class="plot_view_image3" style="    width: 18%;
+                                                                padding: 5px 9px;" src="../media/{{plot_view3.attached_file}}"></a>
+                                                                <li {% if plot_view3 == None  %} style="display: none" {% elif plot_view3 == "" %} style="display: none"  {% else %}  {% endif %} id="plot_view_image33" onclick="plot_view3_onclick()" style="cursor: pointer"  class="fa fa-remove"></li>
+                                               
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                   
+                                     
+                                   
+                                    </div>
+                               
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="{% static 'admin/js/jquery.min.js' %}"></script>
+
+<script src="{% static 'admin/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js">
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+<script>
+    {% for message in messages %}
+
+    message1 = "{{message}}"
+
+
+    if (message1 == "error") {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ message }}",
+        })
+
+    } else {
+
+        Swal.fire(
+            '',
+            '{{ message }}',
+            '{{message.tags}}'
+        )
+
+    } 
+    {% endfor %}
+</script>
+
+{% endif %}
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+<script>
+    
+
+    function plot_view1_onclick(){
+        $(".plot_view_select1").show()
+        $("#plot_view1_remove").val(1)
+        $(".plot_view_image1").hide()
+        $("#plot_view_image11").hide()
+       
+    }
+    function plot_view2_onclick(){
+        $(".plot_view_select2").show()
+        $("#plot_view2_remove").val(1)
+        $(".plot_view_image2").hide()
+        $("#plot_view_image22").hide()
+    }
+    function plot_view3_onclick(){
+        $(".plot_view_select3").show()
+        $("#plot_view3_remove").val(1)
+        $(".plot_view_image3").hide()
+        $("#plot_view_image33").hide()
+
+    }
+</script>
+
+{% endblock %}
